@@ -10,13 +10,14 @@ function getData () {
         .then((data)=> {
             let panels = data.results
             console.log(panels)
-            containerOptions.innerHTML = panels.map((panel) =>{
+            console.log(panels.question)
+            containerOptions.innerHTML = panels.map((panel) => {
                 return (
                     `
                     <ul class="characters_list">
 					<li>QUESTIONS</li>
-					<li>${panels.question}</li>
-					<li>${panels.incorrect_answers}</li>
+					<li>${panels[1].question}</li>
+					<li>${panels[1].incorrect_answers}</li>
 				    </ul>
                     `
                 )
