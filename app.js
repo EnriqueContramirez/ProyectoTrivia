@@ -1,9 +1,14 @@
+// Comienzo declarando e inicializando mis variables y constantes
 let difficulty = 0; 
 let type = 0;
-let category= 0; 
+let category = 0; 
+let puntaje = 0;
 let panels;
-let containerOptions = document.getElementById("container_options");
-let containerquestions = document.getElementById("container_questions");
+const containerOptions = document.getElementById("container_options");
+const containerquestions = document.getElementById("container_questions");
+const containerPuntaje = document.getElementById("container_puntaj");
+
+//Con esta función obtendré la información de las preguntas y respuestas de acuerdo con los parametros que indique el usuario para guardarlas en una variable
 function getData () {
     const URL =`https://opentdb.com/api.php?amount=10&category=${category}&difficulty=${difficulty}&type=${type}`;
     console.log(URL)
@@ -16,7 +21,7 @@ function getData () {
             })
         .catch(error => console.error(error));
 }
-
+// con esta función validamos que el usuario haya seleccionado una opción por categoria, tipo y dificultad para continuar
 function validarOpcionesCompletas () {
     if (difficulty == 0 && type == 0 && category == 0){
         alert("Debe seleccionar una opción valida");
@@ -27,8 +32,9 @@ function validarOpcionesCompletas () {
         });
     }
 }
-
+// con esta función se muestra la pregunta con sus posibles respuestas para que el usuario pueda seleccionar una de ellas, una vez seleccione una se mostrará la siguiente pregunta hasta llegar a la pregunta 10.
 function mostrarPregunta(index){
+    containerOptions.style.display = "none";
     const pregunta = panels[index];
     const respuestas = pregunta.incorrect_answers.concat(pregunta.correct_answer).sort();
     containerquestions.innerHTML = `
@@ -38,18 +44,25 @@ function mostrarPregunta(index){
         ${respuestas
           .map(
             (respuesta) => 
-            `<li><button onclick='mostrarSiguientePregunta(${index + 1})'>${respuesta}</button></li>`
+            `<li><button id="answer_${index}" onclick='mostrarSiguientePregunta(${index + 1}, panels')>${respuesta}</button></li>`
             )
           .join(" ")}
       </ul>
     `
 }
-
-
+// con esta función se van corriend por cada una de las preguntas hasta llegar a la 10 para mostar mensaje final y puntaje
 function mostrarSiguientePregunta(index, panels){
+    // const pregunta = panels[index];
+    // const respuestaSeleccionada = event.target.innerText;
+    // const respuestaCorrecta = pregunta.correct_answer;
+
+    // if(respuestaSeleccionada === respuestaCorrecta){
+    //     puntaje++;
+    //     containerPuntaje.innerText = `Puntaje: ${puntaje}`;
+    // }
     if(index >= panels.length){
       containerquestions.innerHTML = `
-      <p>¡Trivia finalizada!</p>
+      <p>Trivia Completed! Puntaje Total: ${puntaje}</p>
       `
     } else {
       mostrarPregunta(index);
