@@ -6,7 +6,7 @@ let puntaje = 0;
 let panels;
 const containerOptions = document.getElementById("container_options");
 const containerquestions = document.getElementById("container_questions");
-const containerPuntaje = document.getElementById("container_puntaj");
+const containerPuntaje = document.getElementById("container_puntaje");
 
 //Con esta función obtendré la información de las preguntas y respuestas de acuerdo con los parametros que indique el usuario para guardarlas en una variable
 function getData () {
@@ -44,7 +44,7 @@ function mostrarPregunta(index){
         ${respuestas
           .map(
             (respuesta) => 
-            `<li><button id="answer_${index}" onclick='mostrarSiguientePregunta(${index + 1}, panels')>${respuesta}</button></li>`
+            `<li><button id="answer_${index}" onclick="mostrarSiguientePregunta(${index + 1}, panels)">${respuesta}</button></li>`
             )
           .join(" ")}
       </ul>
@@ -52,20 +52,21 @@ function mostrarPregunta(index){
 }
 // con esta función se van corriend por cada una de las preguntas hasta llegar a la 10 para mostar mensaje final y puntaje
 function mostrarSiguientePregunta(index, panels){
-    // const pregunta = panels[index];
-    // const respuestaSeleccionada = event.target.innerText;
-    // const respuestaCorrecta = pregunta.correct_answer;
-
-    // if(respuestaSeleccionada === respuestaCorrecta){
-    //     puntaje++;
-    //     containerPuntaje.innerText = `Puntaje: ${puntaje}`;
-    // }
     if(index >= panels.length){
-      containerquestions.innerHTML = `
-      <p>Trivia Completed! Puntaje Total: ${puntaje}</p>
-      `
-    } else {
-      mostrarPregunta(index);
+        containerquestions.innerHTML = `
+        <p>Trivia Completed! Puntaje Total: ${puntaje}</p>
+        `
+    } else if (index < 10){
+        const pregunta = panels[index - 1];
+        const respuestaCorrecta = pregunta.correct_answer;
+        console.log(respuestaCorrecta)
+        const respuestaSeleccionada = event.currentTarget.textContent;
+        console.log(respuestaSeleccionada)
+        if(respuestaSeleccionada === respuestaCorrecta){
+            puntaje++;
+            containerPuntaje.innerText = `Puntaje: ${puntaje}`;
+        }
+        mostrarPregunta(index);
     }
   }
 
