@@ -55,6 +55,8 @@ function mostrarSiguientePregunta(index, panels){
     if(index >= panels.length){
         containerquestions.innerHTML = `
         <p>Trivia Completed! Puntaje Total: ${puntaje}</p>
+
+
         `
     } else if (index < 10){
         const pregunta = panels[index - 1];
@@ -63,7 +65,7 @@ function mostrarSiguientePregunta(index, panels){
         const respuestaSeleccionada = event.currentTarget.textContent;
         console.log(respuestaSeleccionada)
         if(respuestaSeleccionada === respuestaCorrecta){
-            puntaje++;
+            puntaje += 100;
             containerPuntaje.innerText = `Puntaje: ${puntaje}`;
         }
         mostrarPregunta(index);
