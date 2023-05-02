@@ -4,9 +4,33 @@ let type = 0;
 let category = 0; 
 let puntaje = 0;
 let panels;
+const containerWelcome = document.getElementById("PantallaBienvenida")
 const containerOptions = document.getElementById("container_options");
 const containerquestions = document.getElementById("container_questions");
 const containerPuntaje = document.getElementById("container_puntaje");
+const buttonWelcome = document.getElementById("buttonWelcome");
+const buttomStart = document.getElementById("generar-trivia")
+const containerReinicio = document.getElementById("containerReinicio")
+const Regresar_Inicio = document.getElementById("Regresar_Inicio")
+
+buttonWelcome.addEventListener("click", configurarTrivia)
+buttomStart.addEventListener("click", validarOpcionesCompletas);
+Regresar_Inicio.addEventListener("click", configurarTrivia);
+
+//con esta función se crea la pantalla de bienvenida a la trivia
+function iniciarTrivia () {
+    containerWelcome.style.display = "flex";
+    containerOptions.style.display = "none";
+    containerquestions.style.display = "none";
+    containerPuntaje.style.display = "none";
+    containerReinicio.style.display = "none";
+}
+// Con esta función se habilita para que aparezcan las opciones de configurar la trivia
+function configurarTrivia () {
+    containerWelcome.style.display = "none";
+    containerOptions.style.display = "flex";   
+}
+
 
 //Con esta función obtendré la información de las preguntas y respuestas de acuerdo con los parametros que indique el usuario para guardarlas en una variable
 function getData () {
@@ -32,9 +56,12 @@ function validarOpcionesCompletas () {
         });
     }
 }
-// con esta función se muestra la pregunta con sus posibles respuestas para que el usuario pueda seleccionar una de ellas, una vez seleccione una se mostrará la siguiente pregunta hasta llegar a la pregunta 10.
+// con esta función se muestra la pregunta con sus posibles respuestas para que el usuario pueda seleccionar una de ellas.
 function mostrarPregunta(index){
     containerOptions.style.display = "none";
+    containerquestions.style.display = "flex";
+    containerReinicio.style.display = "flex";
+    containerPuntaje.style.display = "flex";
     const pregunta = panels[index];
     const respuestas = pregunta.incorrect_answers.concat(pregunta.correct_answer).sort();
     containerquestions.innerHTML = `
@@ -50,23 +77,24 @@ function mostrarPregunta(index){
       </ul>
     `
 }
-// con esta función se van corriend por cada una de las preguntas hasta llegar a la 10 para mostar mensaje final y puntaje
+// con esta función se van corriendo por cada una de las preguntas hasta llegar a la 10 para mostrar mensaje final y puntaje
 function mostrarSiguientePregunta(index, panels){
-    if(index >= panels.length){
-        containerquestions.innerHTML = `
-        <p>Trivia Completed! Puntaje Total: ${puntaje}</p>
-
-
-        `
-    } else if (index < 10){
-        const pregunta = panels[index - 1];
-        const respuestaCorrecta = pregunta.correct_answer;
-        console.log(respuestaCorrecta)
-        const respuestaSeleccionada = event.currentTarget.textContent;
-        console.log(respuestaSeleccionada)
+    const pregunta = panels[index - 1];
+    const respuestaCorrecta = pregunta.correct_answer;
+    const respuestaSeleccionada = event.currentTarget.textContent;
+    console.log(respuestaSeleccionada)
+    if(index >= 10 ){
         if(respuestaSeleccionada === respuestaCorrecta){
             puntaje += 100;
-            containerPuntaje.innerText = `Puntaje: ${puntaje}`;
+        }
+        containerquestions.innerHTML = `
+        <p>Trivia Completed! Total Score: ${puntaje}</p>
+        `
+        containerPuntaje.style.display = "none"
+    } else {      
+        if(respuestaSeleccionada === respuestaCorrecta){
+            puntaje += 100;
+            containerPuntaje.innerText = `Score: ${puntaje}`;
         }
         mostrarPregunta(index);
     }
@@ -95,5 +123,7 @@ document.getElementById("category").addEventListener("change", (e) => {
 })
 
 // definimos la función de obtener la información de la API cuando el usuario le de clic al boton Generar Trivia
-let buttomStart = document.getElementById("generar-trivia")
-buttomStart.addEventListener("click", validarOpcionesCompletas);
+
+
+
+window.addEventListener('load', iniciarTrivia)
