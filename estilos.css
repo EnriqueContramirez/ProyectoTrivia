@@ -1,4 +1,36 @@
 body {
-    background-color: darkolivegreen;
+    background-color: yellow;
 }
 
+.container-fluid{
+    background-color: #8a2be2;
+}
+
+.container .row .colpar{
+    background-color: #8a2be2;
+}
+
+.container .row .colimpar {
+    background-color: #9932cc;
+}
+
+#header img{
+    width: 80px;
+    height: auto;
+}
+
+.navbar-brand{
+    color: yellow;
+}
+
+footer{
+    background-color: #8a2be2;
+}
+
+.container p, a {
+    color: white;
+}
+
+#PantallaBienvenida {
+    max-height: 700px;
+}

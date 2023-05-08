@@ -28,7 +28,10 @@ function iniciarTrivia () {
 // Con esta función se habilita para que aparezcan las opciones de configurar la trivia
 function configurarTrivia () {
     containerWelcome.style.display = "none";
-    containerOptions.style.display = "flex";   
+    containerOptions.style.display = "flex";
+    containerquestions.style.display = "none";
+    containerPuntaje.style.display = "none";
+    containerReinicio.style.display = "none";   
 }
 
 
