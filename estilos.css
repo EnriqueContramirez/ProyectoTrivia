@@ -50,12 +50,11 @@ footer{
 }
 
 #buttonWelcome {
-    align-self: center;
-    justify-self: end;
-    width: 500px;
-    height: 200px;
     background-color: #9932cc;
     border-radius: 10%;
-    border: yellow solid 15px;
+    border: yellow solid 10px;
+}
 
+#buttonWelcome:hover {
+    background-color: #5e1d7e;
 }
