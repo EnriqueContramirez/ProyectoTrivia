@@ -1,9 +1,10 @@
 body {
-    background-color: yellow;
+    background-color: #ffd044;
 }
 
 .container-fluid{
     background-color: #8a2be2;
+    margin: 0;
 }
 
 .container .row .colpar{
@@ -18,9 +19,9 @@ body {
     width: 80px;
     height: auto;
 }
-
-.navbar-brand{
-    color: yellow;
+#header {
+    margin: 0;
+    padding: 0;
 }
 
 footer{
@@ -29,18 +30,19 @@ footer{
 
 .container p, a {
     color: white;
+    font-size: 20px;
 }
 
-#PantallaBienvenida .carouselExampleFade img{
+#fondoApp .carouselExampleFade img{
     max-height: 70vh;
     object-fit: cover;
 }
 
-#carousel {
+#fondoApp {
     position: relative;
 }
 
-#PantallaBienvenida .overlay{
+#fondoApp #PantallaBienvenida{
     position: absolute;
     top: 0;
     bottom: 0;
@@ -51,10 +53,26 @@ footer{
 
 #buttonWelcome {
     background-color: #9932cc;
-    border-radius: 10%;
-    border: yellow solid 10px;
+    border-radius: 5%;
+    border: none;
 }
 
 #buttonWelcome:hover {
     background-color: #5e1d7e;
+}
+.containerStart {
+    /* border: 2px solid black; */
+    padding: 25px;
+    border-radius: 5%;
+    background-color: #8a7125eb;
+}
+h1 {
+    color: white;
+}
+#container_options {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
 }
