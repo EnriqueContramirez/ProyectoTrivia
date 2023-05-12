@@ -69,8 +69,8 @@ function mostrarPregunta(index){
     const respuestas = pregunta.incorrect_answers.concat(pregunta.correct_answer).sort();
     containerquestions.innerHTML = `
     <ul class="questions_list">
-        <li class="h4">QUESTION N° ${index + 1}</li>
-        <li>${pregunta.question}</li>
+        <li class="h3">QUESTION N° ${index + 1}</li>
+        <li class="h4">${pregunta.question}</li>
         ${respuestas
           .map(
             (respuesta) => 
