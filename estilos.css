@@ -51,28 +51,35 @@ footer{
     z-index: 1;
 }
 
-#buttonWelcome {
+.btn {
     background-color: #9932cc;
     border-radius: 5%;
     border: none;
+    margin-top: 10px;
+    color: white;
 }
 
-#buttonWelcome:hover {
-    background-color: #5e1d7e;
+.btn:hover {
+    background-color: #c05bf3;
 }
 .containerStart {
-    /* border: 2px solid black; */
-    padding: 25px;
+    padding: 50px;
     border-radius: 5%;
-    background-color: #8a7125eb;
+    background-color: #2631a7eb;
 }
 h1 {
     color: white;
 }
-#container_options {
+#container_options, #container_questions {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 2;
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+    background-color: #2631a7eb;
+    border-radius: 5%;
+    color: yellow;
 }

@@ -69,15 +69,15 @@ function mostrarPregunta(index){
     const respuestas = pregunta.incorrect_answers.concat(pregunta.correct_answer).sort();
     containerquestions.innerHTML = `
     <ul class="questions_list">
-        <li>QUESTION N° ${index + 1}</li>
+        <li class="h4">QUESTION N° ${index + 1}</li>
         <li>${pregunta.question}</li>
         ${respuestas
           .map(
             (respuesta) => 
-            `<li><button id="answer_${index}" onclick="mostrarSiguientePregunta(${index + 1}, panels)">${respuesta}</button></li>`
+            `<a class="btn btn-outline-light" id="answer_${index}" onclick="mostrarSiguientePregunta(${index + 1}, panels)">${respuesta}</a>`
             )
           .join(" ")}
-      </ul>
+    </ul>
     `
 }
 // con esta función se van corriendo por cada una de las preguntas hasta llegar a la 10 para mostrar mensaje final y puntaje
